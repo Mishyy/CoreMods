@@ -1,0 +1,62 @@
+buildscript {
+    repositories {
+        maven { url 'https://files.minecraftforge.net/maven/' }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
+}
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '2.0.2'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.10'
+    id 'idea'
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+group = 'org.mhdvsolutions'
+version = '1.0.0-SNAPSHOT'
+archivesBaseName = 'CoreMods'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+minecraft {
+    version = '1.8.9-11.15.1.1722'
+    runDir = 'run'
+    mappings = 'stable_20'
+}
+
+configurations {
+    embed
+    compile.extendsFrom(embed)
+}
+
+dependencies {
+    embed 'org.jetbrains.kotlin:kotlin-stdlib-jre8:+'
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+jar {
+    from configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+task copyJar(type: Copy) {
+    from "build/libs/${project.archivesBaseName}-${project.version}.jar"
+    into "/home/tmux/.minecraft/mods/1.8.9/"
+    rename { String fileName -> fileName.replace("${project.archivesBaseName}-${project.version}.jar", "${project.archivesBaseName}.jar") }
+}

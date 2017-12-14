@@ -1,0 +1,16 @@
+[
+{
+  "modid": "coremods",
+  "name": "Core Mods",
+  "description": "The 1.8.9 core modifications package used by tmux.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["tmux"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
