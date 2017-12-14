@@ -15,6 +15,7 @@ class KeyInputHandler(private val mod: CoreMod) {
     @SubscribeEvent
     fun onKeyInput(event: InputEvent.KeyInputEvent) {
         if (Keybinds.TOGGLE_SPRINT.isPressed) toggleSprint()
+        if (Keybinds.TOGGLE_SNEAK.isPressed) toggleSneak()
         if (Keybinds.TOGGLE_GAMMA.isPressed) toggleGamma()
     }
 
@@ -23,6 +24,13 @@ class KeyInputHandler(private val mod: CoreMod) {
 
         mod.toggleSprint = !mod.toggleSprint
         if (!mod.toggleSprint && key > 0) KeyBinding.setKeyBindState(key, Keyboard.isKeyDown(key))
+    }
+
+    private fun toggleSneak() {
+        val key = minecraft.gameSettings.keyBindSneak.keyCode
+
+        mod.toggleSneak = !mod.toggleSneak
+        if (!mod.toggleSneak && key > 0) KeyBinding.setKeyBindState(key, Keyboard.isKeyDown(key))
     }
 
     private fun toggleGamma() {
