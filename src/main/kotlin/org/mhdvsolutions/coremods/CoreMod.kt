@@ -16,8 +16,8 @@ import org.mhdvsolutions.coremods.utils.Constants.MOD_VERSION
 class CoreMod {
 
     var toggleSprint = false
-    var toggleSneak = false
     var toggleGamma = false
+    var toggleInformation = false
 
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent) {
@@ -26,7 +26,8 @@ class CoreMod {
 
     @Mod.EventHandler
     fun init(event: FMLInitializationEvent) {
-        setOf(ClientTick(this), KeyInputHandler(this), RenderGameOverlay(this)).forEach { MinecraftForge.EVENT_BUS.register(it) }
+        setOf(ClientTick(this), KeyInputHandler(this), RenderGameOverlay(this))
+                .forEach { MinecraftForge.EVENT_BUS.register(it) }
     }
 
 }

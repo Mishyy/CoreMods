@@ -11,12 +11,11 @@ import org.mhdvsolutions.coremods.utils.Constants.Y_OFFSET
 class RenderGameOverlay(private val mod: CoreMod) {
 
     private val minecraft = Minecraft.getMinecraft()
-    private var yOffset = Y_OFFSET
 
     @SubscribeEvent
     fun onRenderGameOverlay(event: RenderGameOverlayEvent) {
         if (event.type != RenderGameOverlayEvent.ElementType.TEXT) return
-
+        if (mod.toggleInformation) return
 
         minecraft.fontRendererObj.apply {
             var y = Y_OFFSET
@@ -26,7 +25,6 @@ class RenderGameOverlay(private val mod: CoreMod) {
             }
 
             line("Sprinting: ${mod.toggleSprint}")
-            line("Sneaking: ${mod.toggleSneak}")
             line("Gamma: ${mod.toggleGamma}")
         }
     }

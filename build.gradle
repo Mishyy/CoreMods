@@ -16,7 +16,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 group = 'org.mhdvsolutions'
-version = '1.0.0-SNAPSHOT'
+version = '1.1.0-SNAPSHOT'
 archivesBaseName = 'CoreMods'
 
 sourceCompatibility = 1.8
